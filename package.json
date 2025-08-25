@@ -1,0 +1,42 @@
+{
+  "name": "bai2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "models/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/server.ts"
+  },
+  "author": "Nguyễn Hoàng Thùy Linh",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.3",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/node": "^7.28.0",
+    "@babel/preset-env": "^7.28.3",
+    "@types/body-parser": "^1.19.6",
+    "@types/ejs": "^3.1.5",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "nodemon": "^3.1.10",
+    "sequelize-cli": "^6.6.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThuyLinh09/Bai2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ThuyLinh09/Bai2/issues"
+  },
+  "homepage": "https://github.com/ThuyLinh09/Bai2#readme"
+}
