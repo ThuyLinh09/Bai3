@@ -60,19 +60,13 @@ if (config.use_env_variable) {
 
 // Import tất cả model trong thư mục
 fs.readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf('.') !== 0 &&
-      file !== basename &&
-      (file.slice(-3) === '.ts' || file.slice(-3) === '.js') &&
-      file.indexOf('.test') === -1
-    );
-  })
+  .filter(file => file !== 'index.ts' && file.slice(-3) === '.ts')
   .forEach(file => {
     const modelImport = require(path.join(__dirname, file));
-    const model = modelImport(sequelize, DataTypes);
+    const model = modelImport.default(sequelize, DataTypes); // dùng .default
     db[model.name] = model;
   });
+
 
 // Gọi associate nếu model có
 Object.keys(db).forEach(modelName => {
