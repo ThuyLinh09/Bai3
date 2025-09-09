@@ -1,106 +1,149 @@
-<!-- Form thêm mới người dùng -->
-<% if(!data) { %>
-<form action="/post-crud" method="post">
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="email" name="email">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputPassword4">Password</label>
-            <input type="password" class="form-control" id="password" name="password">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputFirstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputLastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="lastName">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputPhone">Phone Number</label>
-            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender" class="form-control">
-                <option selected value="0">Male</option>
-                <option value="1">Female</option>
-            </select>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="role">Role</label>
-            <select id="roleId" name="roleId" class="form-control">
-                <option selected value="1">Admin</option>
-                <option value="2">Doctor</option>
-                <option value="3">Patient</option>
-            </select>
-        </div>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User CRUD</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center py-10">
 
-    <!-- ✅ Thêm trường Address -->
-    <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St">
-    </div>
+  <!-- Form thêm mới người dùng -->
+  <% if(!data) { %>
+  <div class="w-full max-w-2xl bg-white p-6 rounded-xl shadow-lg mb-10">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Thêm mới người dùng</h2>
+    <form action="/post-crud" method="post" class="space-y-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" id="email" name="email"
+                 class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" id="password" name="password"
+                 class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+        </div>
+      </div>
 
-    <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
-<% } %>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+          <input type="text" id="firstName" name="firstName"
+                 class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+        </div>
+        <div>
+          <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+          <input type="text" id="lastName" name="lastName"
+                 class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+        </div>
+      </div>
 
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+          <input type="text" id="phoneNumber" name="phoneNumber"
+                 class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+        </div>
+        <div>
+          <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+          <select id="gender" name="gender"
+                  class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+            <option selected value="0">Male</option>
+            <option value="1">Female</option>
+          </select>
+        </div>
+      </div>
 
-<!-- Bảng danh sách người dùng -->
-<body>
-<table style="width:100%">
-    <tr>
-        <th>Email</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Address</th>
-        <th>Action</th>
-    </tr>
-    <% for(let i = 0; i < datalist.length; i++){ %>
-    <tr>
-        <td><%= datalist[i].email %></td>
-        <td><%= datalist[i].firstName %></td>
-        <td><%= datalist[i].lastName %></td>
-        <td><%= datalist[i].address %></td>
-        <td>
-            <a href="/edit-crud?id=<%= datalist[i].id %>">Edit</a> ||
-            <a href="/delete-crud?id=<%= datalist[i].id %>">Delete</a>
-        </td>
-    </tr>
-    <% } %>
-</table>
+      <div>
+        <label for="roleId" class="block text-sm font-medium text-gray-700">Role</label>
+        <select id="roleId" name="roleId"
+                class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+          <option selected value="1">Admin</option>
+          <option value="2">Doctor</option>
+          <option value="3">Patient</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+        <input type="text" id="address" name="address" placeholder="1234 Main St"
+               class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+      </div>
+
+      <button type="submit"
+              class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+        Add User
+      </button>
+    </form>
+  </div>
+  <% } %>
+
+  <!-- Bảng danh sách người dùng -->
+  <div class="w-full max-w-4xl bg-white p-6 rounded-xl shadow-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Danh sách người dùng</h2>
+    <table class="w-full border border-gray-200 rounded-lg overflow-hidden">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-left">Email</th>
+          <th class="px-4 py-2 text-left">First Name</th>
+          <th class="px-4 py-2 text-left">Last Name</th>
+          <th class="px-4 py-2 text-left">Address</th>
+          <th class="px-4 py-2 text-left">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i = 0; i < datalist.length; i++){ %>
+        <tr class="border-t hover:bg-gray-50">
+          <td class="px-4 py-2"><%= datalist[i].email %></td>
+          <td class="px-4 py-2"><%= datalist[i].firstName %></td>
+          <td class="px-4 py-2"><%= datalist[i].lastName %></td>
+          <td class="px-4 py-2"><%= datalist[i].address %></td>
+          <td class="px-4 py-2">
+            <a href="/edit-crud?id=<%= datalist[i].id %>"
+               class="text-blue-600 hover:underline">Edit</a>
+            |
+            <a href="/delete-crud?id=<%= datalist[i].id %>"
+               class="text-red-600 hover:underline">Delete</a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Form cập nhật người dùng -->
+  <% if(data) { %>
+  <div class="w-full max-w-2xl bg-white p-6 rounded-xl shadow-lg mt-10">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Cập nhật người dùng</h2>
+    <form action="/put-crud" method="post" class="space-y-4">
+      <input type="hidden" id="id" name="id" value="<%= data.id %>">
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+          <input type="text" id="firstName" name="firstName" value="<%= data.firstName %>"
+                 class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+        </div>
+        <div>
+          <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+          <input type="text" id="lastName" name="lastName" value="<%= data.lastName %>"
+                 class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+        </div>
+      </div>
+
+      <div>
+        <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+        <input type="text" id="address" name="address" value="<%= data.address %>"
+               class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300">
+      </div>
+
+      <button type="submit"
+              class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition">
+        Update
+      </button>
+    </form>
+  </div>
+  <% } %>
+
 </body>
-
-<!-- Form cập nhật người dùng -->
-<% if(data) { %>
-<div class="container">
-    <div class="row">
-        <form action="/put-crud" method="post">
-            <input type="hidden" id="id" name="id" value="<%= data.id %>">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputFirstName">First Name</label>
-                    <input type="text" class="form-control" id="firstName" name="firstName" value="<%= data.firstName %>">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputLastName">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" name="lastName" value="<%= data.lastName %>">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address" value="<%= data.address %>">
-            </div>
-            <button type="submit" class="btn btn-primary">Update</button>
-        </form>
-    </div>
-</div>
-<% } %>
+</html>
